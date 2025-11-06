@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
 	  <!-- Metadatos NuGet -->
-	  <PackageId>GCIT.Libs</PackageId>
+	  <PackageId>GCIT.Core</PackageId>
 	  <Version>1.0.0</Version>
 	  <Authors>Frank Miranda</Authors>
 	  <Company>GCIT</Company>
