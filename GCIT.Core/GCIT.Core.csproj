@@ -27,8 +27,8 @@
 	  <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
 	  <!-- README, icono y licencia -->
-	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageIcon>icon.png</PackageIcon>
+	  <PackageReadmeFile></PackageReadmeFile>
+	  <PackageIcon></PackageIcon>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
