@@ -7,7 +7,7 @@
 
 	  <!-- Metadatos NuGet -->
 	  <PackageId>GCIT.Core</PackageId>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.3</Version>
 	  <Authors>Frank Miranda</Authors>
 	  <Company>GCIT</Company>
 	  <Description>Paquetes escenciales para cualquier proyecto GCIT</Description>
@@ -49,6 +49,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
   </ItemGroup>

@@ -48,6 +48,19 @@ namespace GCIT.Core.Data
             }
         }
 
+        public IQueryable<T> AllNoTracking(Expression<Func<T, bool>> includeFilters = null, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet.AsQueryable();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+            if (includeFilters == null)
+                return query.AsQueryable().AsNoTracking();
+
+            return query.AsQueryable().AsNoTracking().Where(includeFilters);
+        }
+
         public virtual IQueryable<T> Filter(Expression<Func<T, bool>> predicate)
         {
             return _dbSet.Where(predicate).AsQueryable();

@@ -1,9 +1,12 @@
-﻿using GCIT.Core.Models.DTOs.Request;
+﻿using GCIT.Core.Common;
+using GCIT.Core.Helpers;
+using GCIT.Core.Models.DTOs.Request;
 using GCIT.Core.Models.DTOs.Response;
 using GCIT.Core.Services.Interfaces;
 using GCIT.Core.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -37,6 +40,34 @@ namespace GCIT.Core.Services
         public async Task<ObtenerClienteResponse> ObtenerClienteAsync(ObtenerClienteRequest request)
         {
             return await ProcesarRequestAsync<ObtenerClienteRequest, ObtenerClienteResponse>("/api/Customer/ObtenerCliente", Method.Post, request);
+        }
+
+        public async Task<AgregaTransaccionResponse> AgregaTransaccionAsync(AgregaTransaccionRequest request)
+        {
+            var webSiteSettings = Utils.GetApiWebSiteSettings(Constantes.API_TRANSACTION, Constantes.API_PROVEEDOR, request.webSite);
+            _logger.LogInformation($"AgregaTransaccionAsync");
+            var json = JsonConvert.SerializeObject(request);
+            _logger.LogInformation($"request => {json}");
+            var url = _settings.urlApiTransaccion;
+
+            var client = new RestSharp.RestClient(url);
+
+            var req = new RestRequest("/Transaccion/AgregaTransaccion", Method.Post);
+
+            req.AddHeader("SecretKey", webSiteSettings.SecretKey);
+            req.AddHeader("PublicKey", webSiteSettings.PublicKey);
+            req.AddHeader("Content-Type", "application/json");
+
+            req.AddStringBody(json, DataFormat.Json);
+
+            RestResponse resp = await client.ExecuteAsync(req);
+
+            if (!resp.IsSuccessStatusCode)
+                throw new Exception(resp.Content);
+
+            var response = JsonConvert.DeserializeObject<AgregaTransaccionResponse>(resp.Content);
+            _logger.LogInformation($"reponse => {resp.Content}");
+            return response;
         }
 
         private async Task<TResponse> ProcesarRequestAsync<TRequest, TResponse>(string endpoint, Method method, TRequest request)

@@ -48,5 +48,6 @@ namespace GCIT.Core.Interfaces
         Task SaveChangesAsync();
         Task<T> FindAsync(params object[] keys);
         Task<T> FindAsync(Expression<Func<T, bool>> predicate);
+        IQueryable<T> AllNoTracking(Expression<Func<T, bool>> includeFilters = null, params Expression<Func<T, object>>[] includeProperties);
     }
 }

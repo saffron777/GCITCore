@@ -10,6 +10,7 @@ namespace GCIT.Core.Services.Interfaces
 {
     public interface ICABServices
     {
+        Task<AgregaTransaccionResponse> AgregaTransaccionAsync(AgregaTransaccionRequest request);
         Task<ObtenerClienteResponse> ObtenerClienteAsync(ObtenerClienteRequest request);
         Task<ServResponse<ClienteSaldoResponse>> ObtenerSaldoAsync(ClienteSaldoRequest request);
     }
