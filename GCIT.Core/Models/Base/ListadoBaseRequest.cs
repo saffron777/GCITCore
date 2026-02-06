@@ -62,15 +62,13 @@ namespace GCIT.Core.Models.Base
     {
         /// <summary>
         /// Campo a filtrar
-        /// </summary>
-        [Required]
+        /// </summary>        
         public string Campo { get; set; } = string.Empty;
 
         /// <summary>
         /// Valor a filtrar
         /// </summary>
-        [Required]
-        public object Valor { get; set; } = null!;
+        public object? Valor { get; set; } 
 
     }
 }
